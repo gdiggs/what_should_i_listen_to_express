@@ -1,8 +1,20 @@
-
-/*
- * GET home page.
- */
+var https = require('https');
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  var record = {},
+      options = {
+        host: 'x-vinyl.herokuapp.com',
+        path: '/items/random.json'
+      };
+
+  https.get(options, function(resp) {
+    resp.on('data', function(chunk) {
+      record = JSON.parse(chunk);
+      console.log("record title: " + record.title);
+
+      res.render('index', record);
+    });
+  }).on("error", function(e){
+    console.log("Got error: " + e.message);
+  });
 };
