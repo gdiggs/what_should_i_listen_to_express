@@ -1,4 +1,8 @@
 extends layout
 
 block content
-  div You should listen to <em>#{title}</em> by <strong>#{artist}</strong> on #{label}. It is a #{format} record.
+  input(type='hidden',id='record',value=record)
+  div.
+    You should listen to <em>#{title}</em>
+    by <strong>#{artist}</strong> on #{label}.
+    It is a #{format} record.

@@ -10,8 +10,7 @@ exports.index = function(req, res){
   https.get(options, function(resp) {
     resp.on('data', function(chunk) {
       record = JSON.parse(chunk);
-      console.log("record title: " + record.title);
-
+      record.record = chunk;
       res.render('index', record);
     });
   }).on("error", function(e){
